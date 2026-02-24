@@ -1,0 +1,28 @@
+name: Build Docker Images
+
+on:
+  push:
+    branches:
+      - Retry_connection
+  pull_request:
+    branches:
+      - Retry_connection
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build CE Image
+        run: |
+          docker build -f Dockerfile -t jumpserver/chen:dev-ce .
+
+      - name: Build EE Image
+        run: |
+          docker build -f Dockerfile-ee -t jumpserver/chen-ee:dev .

@@ -25,12 +25,12 @@ jobs:
 
       - name: Build EE Image
         run: |
-          docker build -f Dockerfile-ee -t jumpserver/chen-ee:dev .
+          docker build -f Dockerfile-ee -t jumpserver/chen:dev-ee .
 
       - name: Push to Aliyun
         run: |
           echo "${{ secrets.ALIYUN_PASSWORD }}" | docker login --username ${{ secrets.ALIYUN_USERNAME }} ${{ secrets.ALIYUN_REGION }} --password-stdin 
           docker tag jumpserver/chen:dev-ce ${{ secrets.ALIYUN_REGION }}/fit2cloud_nickyang0_0/chen:dev-ce
           docker push ${{ secrets.ALIYUN_REGION }}/fit2cloud_nickyang0_0/chen:dev-ce
-          docker tag jumpserver/chen-ee:dev ${{ secrets.ALIYUN_REGION }}/fit2cloud_nickyang0_0/chen-ee:dev
-          docker push ${{ secrets.ALIYUN_REGION }}/fit2cloud_nickyang0_0/chen-ee:dev
+          docker tag jumpserver/chen:dev-ee ${{ secrets.ALIYUN_REGION }}/fit2cloud_nickyang0_0/chen:dev-ee
+          docker push ${{ secrets.ALIYUN_REGION }}/fit2cloud_nickyang0_0/chen:dev-ee

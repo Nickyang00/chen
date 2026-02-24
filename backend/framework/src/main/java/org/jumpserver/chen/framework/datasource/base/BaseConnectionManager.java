@@ -142,6 +142,8 @@ public abstract class BaseConnectionManager implements ConnectionManager {
 
         ds.setKeepAlive(true);
         ds.setFailFast(true);
+        ds.setConnectionErrorRetryAttempts(3);
+        ds.setBreakAfterAcquireFailure(false);
         ds.setKillWhenSocketReadTimeout(false);
         ds.setTestWhileIdle(true);
         ds.setSocketTimeout(1000 * 60 * 120);
